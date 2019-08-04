@@ -1,0 +1,63 @@
+\documentclass[12pt]{article}
+% We can write notes using the percent symbol!
+% The first line above is to announce we are beginning a document, an article in this case, and we want the default font size to be 12pt
+\usepackage[utf8]{inputenc}
+% This is a package to accept utf8 input.  I normally do not use it in my documents, but it was here by default in Overleaf.
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% These three packages are from the American Mathematical Society and includes all of the important symbols and operations 
+\usepackage{fullpage}
+% By default, an article has some vary large margins to fit the smaller page format.  This allows us to use more standard margins.
+
+\setlength{\parskip}{1em}
+% This gives us a full line break when we write a new paragraph
+
+\begin{document}
+% Once we have all of our packages and setting announced, we need to begin our document.  You will notice that at the end of the writing there is an end document statements.  Many options use this begin and end syntax.
+
+\begin{center}
+    \Large Factor Analysis
+\end{center}
+
+\section{Review of Unsupervised Learning}
+
+Recall that in unsupervised learning, we're given $m$ unlabelled training set $x^{(i)}\in$ $\mathbb{R}^n$ ($0<i<m$) that comes from mixture of Gaussians, and we would like to model the density of $P(x)=\sum_{z} P(x | z) . P(z)$ where $z^{(i)}\in$  $\mathbb{R}^k$ is a latent variable that denote which distribution does $x^{(i)}$ belongs to and thus, we assume there are $k$ distributions. 
+
+Here, $z^{(i)}$ ~ $Multinomial(\phi)$,  where $\phi_{j}$ > 0 and $\sum_{j} = 1$ and ($X^{(i)}|z^{(i)}=j)$ ~ $\mathcal{N}(\mu_{j}, 
+\Sigma_{j})$ 
+
+$\begin{aligned}
+    \ l(\phi, \mu, \sigma) &= \sum_{i=1}^{m}\log p(x^{(i)}, \phi, \mu, \Sigma) \  \\
+    &= \sum_{i=1}^{m}\log \sum_{z^{(i)}=1}^{k} p(x^{(i)}|z^{(i)}; \mu, \Sigma) . p(z^{(i)}; \phi) \ \textrm{} \\
+\end{aligned}$
+    
+The EM algorithm can be applied to fit a mixture model. 
+
+1. E- step:
+$\begin{aligned}
+    \ w_{j} &= P(z^{(i)}|x^{(i)}, \phi, \mu, \Sigma) \  \\
+    \ &= \frac{P(x^{(i)}|z^{(i)}=j) . P(z^{(i)}=j)}{\sum_{l=1}^{k}P(x^{(i)})|z^{(i)}} . P(z^{(i)}=l)\ \\
+    \ &= \frac{\frac{1}{{\sigma \sqrt {2\pi } }}  exp[(x^{(i)}-\mu_{j}^{(i)})^T . \sum_{j}^-1 . (x^{(i)} - \mu_{j})] . \phi_{j}}
+    {\sum_{l=1}^{k}(\frac{1}{{\sigma \sqrt {2\pi } }}  exp[(x^{(i)}-\mu_{j}^{(i)})^T . \sum_{j}^-1 . (x^{(i)} - \mu_{j})]) } \ \\
+\end{aligned}$
+
+
+2. M- step:
+$\begin{aligned}
+    \phi_{j}&=\dfrac{1}{m} \sum_{i=1}^{m} w_{j}^{(i)}\\
+\end{aligned}$;      $\begin{aligned}
+    \Sigma_{j}&=\dfrac{\sum_{i=1}^{m} w_{j}^{(i)}.(x^{(i)}-\mu_{j}).(x^{(i)}-\mu_{j})^T}{\sum_{i=1}^{m} w_{j}^{(i)}}\\
+\end{aligned}$
+
+$\begin{aligned}
+    \mu_{j}&=\dfrac{\sum_{i=1}^{m} w_{j}^{(i)} . x^{(i)}}{\sum_{i=1}^{m} w_{j}^{(i)}};
+\end{aligned}$ 
+
+\subsection{Problem Statement} 
+Now suppose that we have $n>>m$, we will find that $\Sigma$ is singular matrix. This means $\Sigma^{-1}$ is doesn't not exist and we find ${1}/{|\Sigma|^{\frac{1}{2}}}$  = $1/0$. Those terms are needed to compute EM algorithm (refer to E-step).
+
+
+
+\end{document}
