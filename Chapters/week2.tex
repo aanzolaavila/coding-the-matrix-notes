@@ -1,0 +1,139 @@
+\chapter{Week 2: The vector space}
+
+\section{Linear combinations}
+\begin{definition}
+  An expression
+  \begin{equation*}
+    \alpha_1\vv_1 + \cdots + \alpha_n\vv_n
+  \end{equation*}
+  is a linear combination of the vectors $\vv_1, \ldots, \vv_n$.
+  The scalars $\alpha_1, \ldots, \alpha_n$ are the coefficients of the linear combination.
+\end{definition}
+
+% ================================================================
+
+\section{Span}
+\begin{definition}[Span]
+  The set of all linear combinations of some vectors $\vv_1, \ldots, \vv_n$ is called the span of these vectors. Written $\Span\{\vv_1,\ldots,\vv_n\}$.
+\end{definition}
+
+\begin{definition}
+  Let $\sV$ be a set of vectors. If $\vv_1, \ldots, \vv_n$ are vectors such that $\sV = \Span\{ \vv_1, \ldots, \vv_n \}$, then
+  \begin{itemize}
+  \item We say $\{ \vv_1, \ldots, \vv_n \}$ is a generating set for $\sV$.
+  \item We refer to the vectors $\vv_1, \ldots, \vv_n$ as generators for $\sV$.
+  \end{itemize}
+\end{definition}
+
+If we use the vectors $[1, 0, 0]$, $[0, 1, 0]$, and $[0, 0, 1]$:
+\begin{equation*}
+  [x, y, z] = x[1, 0, 0] + y[0, 1, 0] + z[0, 0, 1]
+\end{equation*}
+These are called \emph{standard generators} for $\R^3$.
+
+% ================================================================
+
+\section{Geometry of sets of vectors}
+Span of a single nonzero vector $\vv$:
+\begin{equation*}
+  \Span\{\vv\} = \{ \alpha\vv : \alpha\in\R \}
+\end{equation*}
+This is the line through the origin and $\vv$, One-dimensional. The span of the empty set: just the origin, Zero-dimensional.
+
+One way to specify a plane can be with:
+\begin{equation*}
+  \{ (x, y, z) : ax + by + cz = 0 \}
+\end{equation*}
+
+Using dot-product, we could rewrite as
+\begin{equation*}
+  \{ [x, y, z] : [a, b, c] \cdot [x, y, z] = 0 \}
+\end{equation*}
+
+We can specify a line in three dimensions:
+\begin{equation*}
+  \{ [x, y, z] : \va_1 \cdot [x, y, z] = 0, \va_2 \cdot [x, y, z] = 0 \}
+\end{equation*}
+
+Two ways to represent a geometric object (line, plane, etc.) containing the origin:
+\begin{itemize}
+\item Span of some vectors.
+\item Solution set of some system of linear equations with zero right hand sides.
+\end{itemize}
+
+What is common with these two representations? R: Subset $\fF^D$ satisfies three properties:
+\begin{enumerate}
+\item Subset contains the zero vector $\vzero$.
+\item If subset contains $\vv$ then it contains $\alpha\vv$ for every scalar $\alpha$.
+\item If subset contains $\vu$ and $\vv$ then it contains $\vu + \vv$.
+\end{enumerate}
+
+\begin{definition}[Vector space]
+  Any subset $\sV$ of $\fF^{D}$ satisfying the three properties is called a vector space.
+\end{definition}
+
+\begin{definition}
+  If $\sU$ is also a vector space and $\sU$ is a subset of $\sV$ then $\sU$ is called a subspace of $\sV$.
+\end{definition}
+
+\subsection{Convex hull}
+\begin{definition}
+  For vectors $\vv_1, \ldots, \vv_n$ over $\R$, a linear combination
+  \begin{equation*}
+    \alpha_1\vv_1, \ldots, \alpha_n\vv_n
+  \end{equation*}
+  is a convex combination if the coefficients are all nonnegative and they sum to $1$.
+\end{definition}
+
+% ================================================================
+
+\section{Vector spaces}
+To represent an object that doesn't contain the origin we sum a vector $\vc$ and redefine the definition as:
+\begin{equation*}
+  \{ \vc + \vv : \vv \in \sV \}
+\end{equation*}
+It can also be abbreviated as $\{ \vc + \sV \}$.
+
+\begin{definition}
+  A linear combination
+  \begin{equation*}
+    \alpha_1\vu_1 + \alpha_2\vu_2 + \cdots + \alpha_n\vu_n
+  \end{equation*}
+  where
+  \begin{equation*}
+    \alpha_1 + \alpha_2 + \cdots + \alpha_n = 1
+  \end{equation*}
+  is an affine combination.
+\end{definition}
+
+\begin{definition}
+  The set of all affine combinations of vectors $\vu_1, \vu_2, \ldots, \vu_n$ is called the \emph{affine hull} of those vectors.
+\end{definition}
+
+Affine hull of $\vu_1, \vu_2, \ldots, \vu_n = \{ \vu_1 + \Span\{ \vu_2 - \vu_1, \ldots, \vu_n - \vu_1 \} \}$. This shows that the affine hull is an affine space.
+
+In general, a geometric object can be expressed as the solution set of a system of linear equations.
+\begin{equation*}
+  \{ \vx : \va_1\cdot\vx = \beta_1, \cdots, \va_m\cdot\vx = \beta_m \}
+\end{equation*}
+
+Conversely, is the solution set an affine space?
+Consider solution set of a contradictory system of equations, e.g. $1x = 1, 2x = 1$:
+\begin{itemize}
+\item Solution set is empty
+\item but a vector space $\sV$ always contains the zero vector,
+\item so an affine space $\vu_1 + \sV$ always contains at least one vector.
+\end{itemize}
+Turns out this is the only exception:
+\begin{theorem}
+  The solution set of a linear system is either empty or an affine space.
+\end{theorem}
+
+\begin{definition}
+  A linear equation $\va\cdot\vx = 0$ with zero right-hand side is a homogeneous linear equation. A system of homogeneous linear equations is called a homogeneous linear system.
+\end{definition}
+
+\begin{lemma}
+  Let $\vu_1$ be a solution to a linear system. Then, for any other vector $\vu_2$, $\vu_2$ is also a solution if and only if $\vu_2-\vu_1$ is a solution to the corresponding homogeneous linear system.
+\end{lemma}
+

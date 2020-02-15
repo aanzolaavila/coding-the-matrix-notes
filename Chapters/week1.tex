@@ -1,0 +1,71 @@
+\chapter{Week 1: The vector}
+
+\section{What is a vector?}
+A vector is an array of $d$ numbers, and also can be thought as functions that maps from $\{0, 1, \ldots, d-1\}$ to $\fF$ with $\fF^{d}$ as the notation.
+
+A vector most of whose values are zero is called a \textsl{sparse} vector. If no more than $k$ of the entries are nonzero, we say the vector is $k$-sparse. A $k$-sparce vector can be represented using space proportional to $k$.
+
+\section{Vector addition and scalar-vector multiplication}
+\begin{definition}[Vector addition]
+  \begin{equation*}
+    [u_1, u_2, \ldots, u_n] + [v_1, v_2, \ldots, v_n] = [u_1+v_1, u_2+v_2, \ldots, u_n+v_n]
+  \end{equation*}
+\end{definition}
+
+\begin{definition}[Zero vector]
+  The $D$-vector whose entries are all zero is the zero vector, written $\vzero_D$ or just $\vzero$.
+  \begin{equation*}
+    \vv + \vzero = \vv
+  \end{equation*}
+\end{definition}
+
+\begin{definition}[Associativity]
+  \begin{equation*}
+    (\vx + \vy) + \vz = \vx + (\vy + \vz)
+  \end{equation*}
+\end{definition}
+
+\begin{definition}[Commutativity]
+  \begin{equation*}
+    \vx + \vy = \vy + \vx
+  \end{equation*}
+\end{definition}
+
+For vectors, we refer to field elements as scalars, we use them to scale vectors: $\alpha\vv$. Greek letters (e.g. $\alpha,\beta,\gamma$) denote scalars.
+
+\begin{definition}
+  Multiplying a vector $\vv$ by a scalar $\alpha$ is defined as multiplying each entry of $\vv$ by $\alpha$.
+  \begin{equation*}
+    \alpha [\vv_1, \ldots, \vv_n] = [\alpha\vv_1, \ldots, \alpha\vv_n]
+  \end{equation*}
+\end{definition}
+
+The set of points $\{ \alpha\vv : \alpha\in\R \}$ forms the line through the origin and $\vv$.
+
+An expression of the form $\alpha\vu + \beta\vv$ where $0 \le \alpha \le 1, 0 \le \beta \le 1$, and $\alpha + \beta = 1$ is called a \emph{convex combination} of $\vu$ and $\vv$. An expression of the form $\alpha\vu + \beta\vv$ where $\alpha+\beta=1$ is called and \emph{affine combination} of $\vu$ and $\vv$.
+
+% ================================================================
+
+\section{Dot-product}
+\begin{definition}[Dot-product of two $D$-vectors]
+  Dot-product of two $D$-vectors is the sum of product of corresponding entries:
+  \begin{equation*}
+    \vu \cdot \vv = \sum_{k\in\{1, \ldots, D\}} \vu_k \vv_k
+  \end{equation*}
+\end{definition}
+
+\subsection{Linear equations}
+\begin{definition}
+  A linear equation is an equation of the form
+  \begin{equation*}
+    \va \cdot \vx = \beta
+  \end{equation*}
+  where $\va$ is a vector, $\beta$ is a scalar, and $\vx$ is a vector of variables.
+\end{definition}
+
+Algebraic properties of dot-product:
+\begin{itemize}
+\item Commutativity $\vv \cdot \vx = \vx \cdot \vv$
+\item Homogeneity $(\alpha\vu)\cdot\vv = \alpha(\vu\cdot\vv)$
+\item Distributive law $(\vv_1 + \vv_2)\cdot\vx = \vv_1\cdot\vx + \vv_2\cdot\vx$
+\end{itemize}

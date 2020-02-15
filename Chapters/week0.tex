@@ -1,0 +1,135 @@
+\chapter{Week 0: The function and the field}
+
+% ================================================================
+
+\section{The function and other preliminaries}
+
+\subsection{Set terminology and notation}
+\begin{definition}[Set]
+  A set is an unordered collection of objects.
+\end{definition}
+\begin{itemize}
+\item $\in$: indicates that an object belongs to a set. (e.g. $a\in\{a,b,\ldots\}$)
+\item $\sA \subseteq \sB$: ``$\sA$ is a \textbf{subset} of $\sB$''. Every element of $\sA$ is also an element of $\sB$
+\item $\sA = \sB$: two sets are equal if they contain exactly the same elements.
+\end{itemize}
+
+\subsubsection{Set expressions}
+$\{ x\in\R : x \ge 0 \}$ is the set of nonnegative numbers. First part specifies where the elements of the set comes from and introduces variables. The second part gives a rule that restricts which elements specified in the first part actually get to make it into the set.
+
+\begin{definition}[Cardinality]
+  If a set $\sS$ is not infinite, we use $|\sS|$ to denote the number of elements or \emph{cardinality} of the set.
+\end{definition}
+
+\begin{definition}
+  $\sA \times \sB$ is the set of all pairs $(a, b)$ where $a\in\sA$ and $b\in\sB$
+\end{definition}
+
+\subsection{The function}
+Informally, for each input element in a set $\sA$, a function assigns a single output element from another set $\sB$
+\begin{itemize}
+\item $\sA$ is called the \textbf{domain} of the function
+\item $\sB$ is called the \textbf{co-domain}
+\end{itemize}
+
+\begin{definition}[Function]
+  A function is a set of pairs $(a, b)$ no two of which have the same first element.
+\end{definition}
+
+\begin{definition}[Image]
+  The output of a given input is called the \emph{image} of that input. The image of $q$ under a function $f$ is denoted $f(q)$
+\end{definition}
+
+If $f(q) = r$, we say $q$ maps to $r$ under $f$. In Mathese, we write this as $q \mapsto r$.
+
+The set from which all the outputs are chosen is called the co-domain.
+We write:
+\begin{equation*}
+  f : \sD \rightarrow \sF
+\end{equation*}
+when we want to say that $f$ is a function with domain $\sD$ and co-domain $\sF$.
+
+\begin{definition}[Image of a function]
+  The image of a function is the set of all images of inputs. Mathese: $\Ima f$
+\end{definition}
+
+\begin{example}
+  $\cos : \R \rightarrow \R$, which means the domain is $\R$, and the co-domain is $\R$. The image of $\cos(x)$, $\Ima \cos$ is $\{ x\in\R : -1 \le x \le 1 \}$.
+\end{example}
+
+\begin{definition}
+  For sets $\sF$ and $\sD$, $\sF^{\sD}$ denotes all functions from $\sD$ to $\sF$.
+\end{definition}
+
+\begin{proposition}
+  For finite sets, $|\sF^{\sD}| = |\sF|^{|\sD|}$.
+\end{proposition}
+
+\begin{definition}[Identity function]
+  For any domain $\sD$. $\mathrm{id}_{\sD} : \sD \rightarrow \sD$ maps each domain element $d$ to itself.
+\end{definition}
+
+\begin{definition}[Functional composition]
+  For functions $f : \sA \rightarrow \sB$ and $g : \sB \rightarrow \sC$, the functional composition of $f$ and $g$ is the function $(g \circ f) : \sA \rightarrow \sC$ defined by $(g \circ f)(x) = g(f(x))$.
+\end{definition}
+
+\begin{proposition}
+  $h \circ (g \circ f) = (h \circ g) \circ f$
+\end{proposition}
+
+\begin{definition}[Functional inverses]
+  Functions $f$ and $g$ are functional inverses if $f \circ g$ and $g \circ f$ are defined and are identity functions. A function that has an inverse is invertible.
+\end{definition}
+
+\begin{definition}
+  $f : \sD \rightarrow \sF$ is \textbf{one-to-one} if $f(x) = f(y)$ implies $x = y$.
+\end{definition}
+
+\begin{definition}
+  $f : \sD \rightarrow \sF$ is \textbf{ontox} if for every $z \in \sF$ there exists an $a$ such that $f(a) = z$.
+\end{definition}
+
+\begin{proposition}
+  Invertible functions are one-to-one.
+\end{proposition}
+
+\begin{theorem}[Function Invertibility Theorem]
+  A function $f$ is invertible if and only if it is one-to-one and onto.
+\end{theorem}
+
+% ================================================================
+
+\section{The Field: Introduction to complex numbers}
+
+$i = \sqrt{-1}$ is an imaginary number, this is a solution to an equation such as $x^2 = -1$. For $(x-1)^2 = 9$, the solution is $x = 1 + 3i$.
+
+A \textbf{complex number} has a real part and an imaginary part.
+
+\subsection{Field notation}
+When we want to refer to a field without specifying which field we will use the notation $\fF$.
+
+We study three fields;
+\begin{itemize}
+\item The field $\R$ of real numbers.
+\item The field $\sC$ of complex numbers.
+\item The finite field $GF(2)$, which consists of $0$ and $1$ under $\mod 2$ arithmetic.
+\end{itemize}
+
+\section{The Field of playing with $\sC$}
+We can interpret real and imaginary parts of a complex number as $x$ and $y$ coordinates. Assume that $z\in\sC$.
+
+\begin{itemize}
+\item \textbf{Translation} $f(z) = z + z_0, z_0 \in \sC$. A translation can ``move'' a picture anywhere in the complex plane.
+\item \textbf{Scaling} $f(z) = mz, m \in \R$.
+\item \textbf{Invert} $f(z) = (-1)z$.
+\item \textbf{Rotate counterclockwise by 90 degreesx} $f(z) = iz$.
+\item \textbf{Rotating by an angle} $f(z) = z \cdot e^{\tau i}$, does rotation by angle $\tau$.
+\end{itemize}
+
+\section{The Field of playing with $GF(2)$}
+$GF(2) = \text{Galois Field 2}$, has just two elements: $0$ and $1$.
+\begin{itemize}
+\item Addition is like exclusive-or. (e.g. $\mathrm{XOR}(a, b) = a \not\equiv b ; a, b \in GF(2)$)
+\item Multiplication is just like normal multiplication.
+\end{itemize}
+

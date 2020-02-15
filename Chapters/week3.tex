@@ -1,0 +1,65 @@
+\chapter{Week 3: The matrix}
+
+\section{What is a matrix}
+The traditional notion of a matrix: a two dimensional array
+\begin{equation*}
+  \mA = 
+  \begin{bmatrix}
+    a & b & c \\
+    d & e & f
+  \end{bmatrix}
+\end{equation*}
+where $\mA$ is a $2 \times 3$ matrix.
+
+For a matrix $\mA$, the $i, j$ element of $\mA$ is the element in row $i$, column $j$. It is traditionally written as $\mA_{i, j}$
+
+\begin{definition}
+  For finite sets $\sR$ and $\sC$, and $\sR \times \sC$ matrix over field $\fF$ is a function from $\sR \times \sC$ to $\fF$.
+\end{definition}
+
+\begin{definition}
+  $D \times D$ identity matrix is the matrix $\mathds{1}_D$ such that $\mathds{1}_D[k, k] = 1$ for all $k \in \{1, , \ldots, D\}$ and zero elsewhere.
+\end{definition}
+
+Usually we omit the subscript when $D$ is clear from the context.
+Often letter $\mI$ is used instead of $\mathds{1}$
+
+\subsection{Column space and row space}
+One simple role for a matrix: packing together a bunch of columns or rows.
+\begin{definition}
+  Two vectors associated with a matrix $\mM$:
+  \begin{itemize}
+  \item Column space of $\mM = \Span\{\text{columns of }\mM\}$. Written $\Col \mM$.
+  \item Row space of $\mM = \Span\{\text{rows of }\mM\}$. Written $\Row \mM$.
+  \end{itemize}
+\end{definition}
+
+\subsection{Transpose}
+Transpose swaps rows and columns. It is written as $\mA^{\top}$.
+\begin{equation*}
+  \mA = 
+  \begin{bmatrix}
+    a & b & c \\
+    d & e & f
+  \end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+  \mA^{\top} = 
+  \begin{bmatrix}
+    a & d \\
+    b & e \\
+    c & f
+  \end{bmatrix}
+\end{equation*}
+
+\subsection{Matrices as vectors}
+A matrix can be interpreted as a vector:
+\begin{itemize}
+\item an $\sR \times \sS$ matrix is a function from $\sR \times \sS$ to $\fF$,
+\item it can be interpreted as and $\sR \times \sS$--vector:
+  \begin{itemize}
+  \item scalar-vector multiplication
+  \item vector addition
+  \end{itemize}
+\end{itemize}

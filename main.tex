@@ -1,63 +1,126 @@
-\documentclass[12pt]{article}
-% We can write notes using the percent symbol!
-% The first line above is to announce we are beginning a document, an article in this case, and we want the default font size to be 12pt
-\usepackage[utf8]{inputenc}
-% This is a package to accept utf8 input.  I normally do not use it in my documents, but it was here by default in Overleaf.
-\usepackage{pgfplots}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Masters/Doctoral Thesis 
+% LaTeX Template
+% Version 2.5 (27/8/17)
+%
+% This template was downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Version 2.x major modifications by:
+% Vel (vel@latextemplates.com)
+%
+% This template is based on a template by:
+% Steve Gunn (http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/)
+% Sunil Patel (http://www.sunilpatel.co.uk/thesis-template/)
+%
+% Template license:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt]{book} % The class file specifying the document structure
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+
+% \usepackage{mathpazo} % Use the Palatino font by default
+\usepackage{palatino}
+\usepackage{lipsum}
+% \usepackage[acronym, toc]{glossaries}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{float}
+\usepackage{todonotes}
+\usepackage{bm}
+\usepackage{subfigure}
+\usepackage{amsfonts}
 \usepackage{amsthm}
-% These three packages are from the American Mathematical Society and includes all of the important symbols and operations 
-\usepackage{fullpage}
-% By default, an article has some vary large margins to fit the smaller page format.  This allows us to use more standard margins.
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{relsize}
+\usepackage{pgfplots}
+\usepackage{titlesec}
+\usepackage{siunitx}
+\usepackage{listings}
+\usepackage{fancyvrb}
+\usepackage{tcolorbox}
+\usepackage{dsfont}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 
-\setlength{\parskip}{1em}
-% This gives us a full line break when we write a new paragraph
+\usepackage[backend=bibtex,style=numeric,natbib=true,sortcites=true,sorting=none]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 
+\addbibresource{references.bib} % The filename of the bibliography
+
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+\usepackage{morewrites}
+\usepackage{minted}
+
+% \usepackage[letterpaper,landscape,margin=3cm]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+%----------------------------------------------------------------------------------------
+%	MARGIN SETTINGS
+%----------------------------------------------------------------------------------------
+
+\input{helper_commands.tex}
+\input{math_commands.tex}
+
+\AtEndPreamble{
+  \usepackage{cleveref}
+}
+
+\title{Coursera -- Coding the Matrix notes}
+\author{Alejandro Anzola Ávila}
+\date{\today}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+\setcounter{chapter}{-1} % start chapter numbers from 0
+  
 \begin{document}
-% Once we have all of our packages and setting announced, we need to begin our document.  You will notice that at the end of the writing there is an end document statements.  Many options use this begin and end syntax.
 
-\begin{center}
-    \Large Factor Analysis
-\end{center}
+\newlength{\figwidth}
+\setlength{\figwidth}{26pc}
+\newlength{\notationgap}
+\setlength{\notationgap}{1pc}
 
-\section{Review of Unsupervised Learning}
+% ----------------------------------------------------------------------------------------
 
-Recall that in unsupervised learning, we're given $m$ unlabelled training set $x^{(i)}\in$ $\mathbb{R}^n$ ($0<i<m$) that comes from mixture of Gaussians, and we would like to model the density of $P(x)=\sum_{z} P(x | z) . P(z)$ where $z^{(i)}\in$  $\mathbb{R}^k$ is a latent variable that denote which distribution does $x^{(i)}$ belongs to and thus, we assume there are $k$ distributions. 
-
-Here, $z^{(i)}$ ~ $Multinomial(\phi)$,  where $\phi_{j}$ > 0 and $\sum_{j} = 1$ and ($X^{(i)}|z^{(i)}=j)$ ~ $\mathcal{N}(\mu_{j}, 
-\Sigma_{j})$ 
-
-$\begin{aligned}
-    \ l(\phi, \mu, \sigma) &= \sum_{i=1}^{m}\log p(x^{(i)}, \phi, \mu, \Sigma) \  \\
-    &= \sum_{i=1}^{m}\log \sum_{z^{(i)}=1}^{k} p(x^{(i)}|z^{(i)}; \mu, \Sigma) . p(z^{(i)}; \phi) \ \textrm{} \\
-\end{aligned}$
-    
-The EM algorithm can be applied to fit a mixture model. 
-
-1. E- step:
-$\begin{aligned}
-    \ w_{j} &= P(z^{(i)}|x^{(i)}, \phi, \mu, \Sigma) \  \\
-    \ &= \frac{P(x^{(i)}|z^{(i)}=j) . P(z^{(i)}=j)}{\sum_{l=1}^{k}P(x^{(i)})|z^{(i)}} . P(z^{(i)}=l)\ \\
-    \ &= \frac{\frac{1}{{\sigma \sqrt {2\pi } }}  exp[(x^{(i)}-\mu_{j}^{(i)})^T . \sum_{j}^-1 . (x^{(i)} - \mu_{j})] . \phi_{j}}
-    {\sum_{l=1}^{k}(\frac{1}{{\sigma \sqrt {2\pi } }}  exp[(x^{(i)}-\mu_{j}^{(i)})^T . \sum_{j}^-1 . (x^{(i)} - \mu_{j})]) } \ \\
-\end{aligned}$
+\maketitle
 
 
-2. M- step:
-$\begin{aligned}
-    \phi_{j}&=\dfrac{1}{m} \sum_{i=1}^{m} w_{j}^{(i)}\\
-\end{aligned}$;      $\begin{aligned}
-    \Sigma_{j}&=\dfrac{\sum_{i=1}^{m} w_{j}^{(i)}.(x^{(i)}-\mu_{j}).(x^{(i)}-\mu_{j})^T}{\sum_{i=1}^{m} w_{j}^{(i)}}\\
-\end{aligned}$
+\include{Chapters/week0}
+\include{Chapters/week1}
+\include{Chapters/week2}
+\include{Chapters/week3}
 
-$\begin{aligned}
-    \mu_{j}&=\dfrac{\sum_{i=1}^{m} w_{j}^{(i)} . x^{(i)}}{\sum_{i=1}^{m} w_{j}^{(i)}};
-\end{aligned}$ 
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
 
-\subsection{Problem Statement} 
-Now suppose that we have $n>>m$, we will find that $\Sigma$ is singular matrix. This means $\Sigma^{-1}$ is doesn't not exist and we find ${1}/{|\Sigma|^{\frac{1}{2}}}$  = $1/0$. Those terms are needed to compute EM algorithm (refer to E-step).
+\appendix % Cue to tell LaTeX that the following "chapters" are Appendices
 
+% Include the appendices of the thesis as separate files from the Appendices folder
+% Uncomment the lines as you write the Appendices
+%\include{Appendices/AppendixC}
 
+% \glsaddall
+% \printglossary[title={Abreviaturas},type=\acronymtype]
 
-\end{document}
+% \printindex
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+% \nocite{*}
+\printbibliography[heading=bibintoc]
+
+%----------------------------------------------------------------------------------------
+
+\end{document}  
