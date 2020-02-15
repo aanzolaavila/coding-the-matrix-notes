@@ -1,17 +1,9 @@
-# Advanced Natural Language Processing Techniques to Profile Cybercriminals
+# Coding the Matrix - My notes
 
-:exclamation: This is my thesis project book, written in **Spanish**.
-
-## Abstract
-> Different commonly used Data Science methodologies are identified for structured 
-> and non-structured data analysis. After that a State of the Art exploration of current techniques 
-> for cybercriminal profiling and data classification is made. Lastly, 3 Natural Language Processing model 
-> proposals are made to aid State security agents in their tasks against crime.
-
-The whole compiled book is in the [main.pdf](https://github.com/SkinMan95/thesis-project-book/blob/master/main.pdf) file.
+This are my notes for the course Coding the Matrix. Feel free to look them up at [main.pdf](https://github.com/aanzolaavila/coding-the-matrix-notes/raw/master/main.pdf)
 
 ## Prerequisites for compiling
-In order to compile this project you can either clone this project from the Overleaf page, or 
+In order to compile this project you can either clone this project from Overleaf, or 
 if you want to do it locally, the easiest way to get all the LaTeX dependencies is by getting 
 the TexLive Full installation (~2.5GB of downloading).
 
@@ -32,9 +24,14 @@ If you just want to remove all the junk produced by LaTeX you can:
 $ sh clean.sh
 ```
 
- ## Author
-**Alejandro Anzola**, Computer Science student
+If you want to modify it and let it compile automatically when something is changed, then execute on the terminal (assuming that you have **latexmk** installed):
+```bash
+$ latexmk -pcv -f -shell-escape -pdf main.tex
+```
 
-Escuela Colombiana de Ingenieria Julio Garavito
+And you can open the PDF file with *Evince* (I prefer it since it automatically refreshes whenever there is a change in the opened file).
+
+ ## Author
+**Alejandro Anzola**
 
 Bogota, Colombia
